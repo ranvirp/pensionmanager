@@ -1,0 +1,33 @@
+DataEntryOperator
+------------------
+Operations:
+
+1. Enter new additions
+   Views
+     --- Data Entry Screen
+	    ---All fields of the form with data validations
+		---Stats of total proposed additions of the panchayat (district or block) at a sidebar
+		
+
+2. Propose for deletions
+
+3. Propose for updataions
+    ---search form with Panchayat and name with a div to display the details of the beneficiary and with edit form displayed with values 
+	    already entered ...it should be same form as add form with all the required validators
+
+
+
+DSWO
+--------
+
+1.Start session of approving updations
+   
+  views
+    -- Button to start  new session a napproving additions which would set a flag that would set a timestamp and would prevent furthmer updations
+	  - below a summary of previous sessions so that he can complete any incomplete session
+
+2. Approve updations
+    views 
+	  --List of incomplete sessions 
+	     -- List of pending proposed for updation with fields proposed for updation being shown in different colour and a button Update or reject updation
+	     -- summary of updation sessions 

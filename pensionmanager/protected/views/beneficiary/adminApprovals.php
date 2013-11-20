@@ -1,0 +1,67 @@
+<?php
+$this->breadcrumbs=array(
+	'Beneficiaries'=>array('index'),
+	'Manage Approvals',
+);
+if (Yii::app()->user->checkAccess('cdo')) {
+$this->menu=array(
+	array('label'=>'Approve Additions', 'url'=>array('addApprove')),
+	array('label'=>'Approve Deletions', 'url'=>array('delApprove')),
+);
+} 
+else if  (Yii::app()->user->checkAccess('dswo')){
+$this->menu=array(array('label'=>'Approve Updations', 'url'=>array('updateApprove')),
+array('label'=>'Forward Additions', 'url'=>array('addForward')),
+array('label'=>'Forward Deletions', 'url'=>array('delForward')),
+
+);
+
+ }
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$('#beneficiary-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
+?>
+
+<h1>Manage Beneficiaries</h1>
+
+<p>
+You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+</p>
+
+<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<div class="search-form" style="display:none">
+</div><!-- search-form -->
+<?php 
+$criteria = new CDbCriteria;
+$criteria->compare('status','swbeneficiary/AddPro');
+
+
+$dataProvider=new CActiveDataProvider('beneficiary', array(
+			'criteria'=>$criteria,
+		));
+		?>
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'beneficiary-grid',
+	'dataProvider'=>$dataProvider,
+	//'filter'=>$model,
+	'columns'=>array(
+		'id',
+		'name',
+		'father_husband_name',
+		'bank_account_no',
+		array(
+			'class'=>'CButtonColumn',
+		),
+	),
+)); ?>

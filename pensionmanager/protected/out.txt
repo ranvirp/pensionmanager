@@ -1,0 +1,35 @@
+
+Yii Migration Tool v1.0 (based on Yii v1.1.14)
+
+Total 1 new migration to be applied:
+    m110517_155003_create_tables_audit_trail
+
+Apply the above migration? (yes|no) [no]:*** applying m110517_155003_create_tables_audit_trail
+    > create table {{audit_trail}} ...exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOT NULL,
+	`field` NOT NULL,
+	`stamp` datetime NOT NULL,
+	`user_id` varchar(255)' at line 6. The SQL statement executed was: CREATE TABLE `pm_audit_trail` (
+	`id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`old_value` text,
+	`new_value` text,
+	`action` varchar(255) NOT NULL,
+	`model` NOT NULL,
+	`field` NOT NULL,
+	`stamp` datetime NOT NULL,
+	`user_id` varchar(255),
+	`model_id` varchar(255) NOT NULL
+)' in D:\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\framework\db\CDbCommand.php(1324): CDbCommand->execute()
+#1 D:\framework\db\CDbMigration.php(233): CDbCommand->createTable('{{audit_trail}}', Array, NULL)
+#2 D:\xampp\htdocs\pensionmanager\protected\extensions\auditTrail\migrations\m110517_155003_create_tables_audit_trail.php(29): CDbMigration->createTable('{{audit_trail}}', Array)
+#3 D:\framework\cli\commands\MigrateCommand.php(385): m110517_155003_create_tables_audit_trail->up()
+#4 D:\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m110517_155003_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 D:\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 D:\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 D:\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 D:\framework\base\CApplication.php(180): CConsoleApplication->processRequest()
+#10 D:\framework\yiic.php(33): CApplication->run()
+#11 D:\xampp\htdocs\pensionmanager\protected\yiic.php(7): require_once('D:\framework\yi...')
+#12 {main}
